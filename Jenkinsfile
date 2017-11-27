@@ -14,7 +14,7 @@ podTemplate(label: 'mypod',
         container('docker') {
             stage('Build Docker Image') {
                 sh """
-                #!/bin/bash
+                #!/bin/sh
                 NAMESPACE=`cat /var/run/configs/registry-config/namespace`
                 REGISTRY=`cat /var/run/configs/registry-config/registry`
 
@@ -23,7 +23,7 @@ podTemplate(label: 'mypod',
             }
             stage('Push Docker Image to Registry') {
                 sh """
-                #!/bin/bash
+                #!/bin/sh
                 NAMESPACE=`cat /var/run/configs/registry-config/namespace`
                 REGISTRY=`cat /var/run/configs/registry-config/registry`
 
@@ -40,7 +40,7 @@ podTemplate(label: 'mypod',
         container('kubectl') {
             stage('Deploy new Docker Image') {
                 sh """
-                #!/bin/bash
+                #!/bin/sh
                 set +e
                 NAMESPACE=`cat /var/run/configs/registry-config/namespace`
                 REGISTRY=`cat /var/run/configs/registry-config/registry`
